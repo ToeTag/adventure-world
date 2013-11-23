@@ -29,7 +29,7 @@
 #define FIGHT 6
 #define GET_DIRECTIONS 3
 #define SEE 4
-
+#define DEBUG
 
 //#include "Troll.h"
 //#include "Spider.h"
@@ -38,18 +38,25 @@ using namespace AdventureWorld;
 
 Adventurer * create_character(Area * a) {
 
-
+  int myNumber = 0;
+  while (myNumber == 0) { 
     cout << "\n\n\nIt is time to create a character, what type of character would you like to create?\n" << endl;
     cout << "1. Human " << endl;
     string input = "";
-    int myNumber = 0;
     getline(cin, input);
+    
     // This code converts from string to number safely.
+    
     stringstream myStream(input);
-    if (myStream >> myNumber) {
-        //	cout << "Invalid number, please try again" << endl;
+    if (!(myStream >> myNumber)) {
+      	cout << "Invalid number, please try again" << endl;        
+    }
+#ifdef DEBUG
+	cout << "myNumber: " <<  myNumber << endl;
+#endif
     }
 
+    
     switch (myNumber) {
         case 1: // Note the colon, not a semicolon
         {
@@ -61,9 +68,9 @@ Adventurer * create_character(Area * a) {
             a->spawn_character(player);
             return player;
         }
-        case 2: // Note the colon, not a semicolon
-            cout << "NOT IMPLEMENTED YET!" << endl;
-            break;
+        case 2:
+	    cout << "NOT IMPLEMENTED YET!" << endl;
+	    break;
         case 3: // Note the colon, not a semicolon
             cout << "NOT IMPLEMENTED YET!" << endl;
             break;
@@ -205,18 +212,20 @@ int main(int argc, const char * argv[]) {
     std::cout << "\n\n\n##################################" << endl;
     std::cout << "#   Welcome to AdventureWorld!   #" << endl;
     std::cout << "##################################\n\n\n" << endl;
-
-    /*std::cout <<  "(	#         ,      ,       #)" >> endl;
-    std::cout <<  "(	#        /(.-""-.)\      #)" >> endl;
-    std::cout <<  "(	#    |\  \/      \/  /|  #)" >> endl;
-    std::cout <<  "(	#    | \ / =.  .= \ / |  #)" >> endl;
-    std::cout <<  "(	#    \( \   o\/o   / )/  #)" >> endl;
-    std::cout <<  "(	#     \_, '-/  \-' ,_/   #)" >> endl;
-    std::cout <<  "(	#       /   \__/   \     #)" >> endl;
-    std::cout <<  "(	#       \ \__/\__/ /     #)" >> endl;
-    std::cout <<  "(	#     ___\ \|--|/ /___   #)" >> endl;
-    std::cout <<  "(	#   /`    \      /    `\ #)" >> endl;
-std::cout <<  "(	#  /       '----'       \#)" >> endl;*/
+    std::cout << 
+R"(   #         ,      ,        # 
+   #        /(.-""-.)\       # 
+   #    |\  \/      \/  /|   #
+   #    | \ / =.  .= \ / |   #
+   #    \( \   o\/o   / )/   #
+   #     \_, '-/  \-' ,_/    #
+   #       /   \__/   \      #
+   #       \ \__/\__/ /      #
+   #     ___\ \|--|/ /___    #
+   #   /`    \      /    `\  #
+   #  /       '----'       \ #)";
+    cout << endl;
+    cout << endl;
     srand(time(0));
     Adventurer * player = 0;
     GameMap * gm = 0;

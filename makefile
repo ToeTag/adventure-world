@@ -1,6 +1,6 @@
  CC = g++
 
- CFLAGS = -w -c -g
+ CFLAGS = -w -c -g -std=c++0x
 
 #LDFLAGS= -lSDL
 
