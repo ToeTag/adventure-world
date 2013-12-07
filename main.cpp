@@ -58,7 +58,7 @@ Adventurer * create_character(Area * a) {
 
     
     switch (myNumber) {
-        case 1: // Note the colon, not a semicolon
+        case 1: 
         {
             cout << "\n\n\nHuman! Great choice indeed! \n" << endl;
             cout << "What will the name of your character be? : \n" << endl;
@@ -71,10 +71,10 @@ Adventurer * create_character(Area * a) {
         case 2:
 	    cout << "NOT IMPLEMENTED YET!" << endl;
 	    break;
-        case 3: // Note the colon, not a semicolon
+        case 3: 
             cout << "NOT IMPLEMENTED YET!" << endl;
             break;
-        default: // Note the colon, not a semicolon
+        default:
             cout << "Error, bad input, quitting\n";
             break;
     }
@@ -82,8 +82,7 @@ Adventurer * create_character(Area * a) {
 }
 
 GameMap * create_map(GameMap * gm) {
-    //Choose Character
-
+    
     //Create map and adds areas
     return gm = new GameMap(10, 10);
 }
@@ -190,18 +189,18 @@ int menu(Adventurer * player, GameMap * gm) {
     cout << "You entered: " << myNumber << endl << endl;
 
     switch (myNumber) {
-        case 1: // Note the colon, not a semicolon
+        case 1: 
             gm = create_map(gm);
             player = add_player(player, gm);
             game(player, gm);
             break;
-        case 2: // Note the colon, not a semicolon
+        case 2: 
             //cout << "NOT IMPLEMENTED YET!" << endl;
             break;
-        case 3: // Note the colon, not a semicolon
-            //1cout << "NOT IMPLEMENTED YET!" << endl;
+        case 3: 
+            //cout << "NOT IMPLEMENTED YET!" << endl;
             break;
-        default: // Note the colon, not a semicolon
+        default:
             cout << "Error, bad input, quitting\n";
             break;
     }
