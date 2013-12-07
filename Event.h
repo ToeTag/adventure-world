@@ -13,6 +13,7 @@
 #include "Sword.h"
 #include "Enemy.h"
 #include "Goblin.h"
+#include "Spider.h"
 
 
 using namespace std;

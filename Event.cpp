@@ -38,11 +38,11 @@ namespace AdventureWorld {
             }
             case 2:
             {
-                return new Goblin("Gezubr"); //TODO: Add more types
+                return new Spider(""); //TODO: Add more types
             }
             case 3: 
             {
-               return new Goblin("Gezubr"); //TODO: Add more types
+               return new Spider(""); //TODO: Add more types
             }
             case 4: 
             {

@@ -1,13 +1,13 @@
 //
-//  Goblin.h
+//  Enemy.cpp
 //  AdventureWorld
 //
 //  Created by Niclas Kempe on 2012-08-07.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef GOBLIN_H
-#define GOBLIN_H
+#ifndef SPIDER_H
+#define SPIDER_H
 
 #include <iostream>
 #include <string.h>
@@ -17,23 +17,23 @@
 using namespace std;
 namespace AdventureWorld
 {
-	class Goblin : 
+	class Spider : 
 		public Enemy
 	{
 		public:
 
-			Goblin(string name_string);
-			~Goblin(void);
+			Spider(string name_string);
+			~Spider(void);
 			virtual string damage_type(void) const;
 			virtual string type(void) const;
-            virtual int damage(void) const;
+	        virtual int damage(void) const;
 			virtual void action();
 
 		private:
-			
+
 			int status;
             int dmg;
-				
+
 	};
 }
 
