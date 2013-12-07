@@ -168,7 +168,6 @@ int game(Adventurer * player, GameMap * gm) {
         } else if (action == SEE) {
             cur_area->print_characters();
         }
-        // 1input = read_str_input();
     }
     cout << "You are dead! Game Over" << endl;
 }
@@ -230,12 +229,7 @@ R"(   #         ,      ,        #
     Adventurer * player = 0;
     GameMap * gm = 0;
     menu(player, gm);
-    //string input = 
-
-
-
-
-
+    
     return 0;
 }
 
