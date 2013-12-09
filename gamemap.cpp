@@ -190,8 +190,13 @@ namespace AdventureWorld
         {
             Area * cur_area = find_character(c);
             Area * new_area = direction_ptr;
-            cur_area->remove_character(c);
-            new_area->spawn_character(c);
+
+	    if (new_area != NULL){
+	      new_area->spawn_character(c);
+	      cur_area->remove_character(c);
+	    } else {
+	      cout << "\nYou can't move any further in that direction!" << endl; 
+	    } 
         }
         
         void GameMap::refresh_map()

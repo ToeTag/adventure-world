@@ -29,6 +29,7 @@
 #define FIGHT 6
 #define GET_DIRECTIONS 3
 #define SEE 4
+#define MAP 5
 #define DEBUG
 
 //#include "Troll.h"
@@ -166,7 +167,9 @@ int game(Adventurer * player, GameMap * gm) {
             cur_area->print_neighbours();
         } else if (action == SEE) {
             cur_area->print_characters();
-        }
+        } else if (action == MAP) {
+	    gm->print_areas();
+	}
     }
     cout << "You are dead! Game Over" << endl;
 }

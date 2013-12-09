@@ -64,29 +64,10 @@ namespace AdventureWorld {
 
     }
 
-    int Human::action() {
+  /* int Human::action() {
 
-        int choice = 0;
-        if (is_under_attack() == false) {
-
-            cout << "\nWhat do you want to do?" << endl;
-            cout << "1. Move" << endl;
-            cout << "2. Inventory" << endl;
-            cout << "3. Directions" << endl;
-            cout << "4. See" << endl;
-        }
-        else if (is_under_attack() == true)
-        {
-            cout << "\nYou are under attack! pick a choice!" << endl;
-            cout << "5. Flee" << endl;
-            cout << "6. Fight back" << endl;
-        }
        
-        cin >> choice;
-        string dummyStr;
-        getline(cin, dummyStr); //Eats the /n from cin
-        return choice;
-    }
+     }*/
 
 
 
