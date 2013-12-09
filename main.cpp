@@ -121,7 +121,7 @@ int game(Adventurer * player, GameMap * gm) {
     cout << "\n\nYou're standing on a path, it is hardly distinguishable in the high grass. The rain is pooring down, suddenly you see a sign infront of you, it says: ";
     cout << "Welcome to " << area_name << endl;
     cout << "Seems like the path leads somewhere even though it haven't been travelled for long..." << endl;
-    //ch->action();
+
     Event event;
     Enemy * enemy = 0;
 
