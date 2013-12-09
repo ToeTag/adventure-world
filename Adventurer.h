@@ -25,7 +25,7 @@ namespace AdventureWorld
 			virtual ~Adventurer(void);
 			virtual string damage_type(void) const = 0;
 			virtual string type(void) const = 0;
-			virtual int action(void) = 0;
+			virtual int action(void);
                         virtual void fight(Character *) = 0;
 			virtual void move(GameMap * gm);
                         // action(GameMap * gm);
