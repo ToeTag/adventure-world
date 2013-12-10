@@ -25,8 +25,8 @@
 
 #define MOVE 1
 #define INVENTORY 2
-#define FLEE 5
-#define FIGHT 6
+#define FLEE 6
+#define FIGHT 7
 #define GET_DIRECTIONS 3
 #define SEE 4
 #define MAP 5
@@ -168,7 +168,7 @@ int game(Adventurer * player, GameMap * gm) {
         } else if (action == SEE) {
             cur_area->print_characters();
         } else if (action == MAP) {
-	    gm->print_areas();
+	        gm->print_areas();
 	}
     }
     cout << "You are dead! Game Over" << endl;

@@ -50,13 +50,13 @@ namespace AdventureWorld
             cout << "2. Inventory" << endl;
             cout << "3. Directions" << endl;
             cout << "4. See" << endl;
-	    cout << "5. Map" << endl;
+	        cout << "5. Map" << endl;
         }
         else if (is_under_attack() == true)
         {
             cout << "\nYou are under attack! pick a choice!" << endl;
-            cout << "5. Flee" << endl;
-            cout << "6. Fight back" << endl;
+            cout << "6. Flee" << endl;
+            cout << "7. Fight back" << endl;
         }
        
         cin >> choice;
