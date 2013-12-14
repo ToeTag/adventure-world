@@ -85,7 +85,7 @@ Adventurer * create_character(Area * a) {
 GameMap * create_map(GameMap * gm) {
     
     //Create map and adds areas
-    return gm = new GameMap(10, 10);
+  return gm = new GameMap(4,4);
 }
 
 Adventurer * add_player(Adventurer * player, GameMap * gm) {
@@ -184,8 +184,9 @@ int menu(Adventurer * player, GameMap * gm) {
     int myNumber = 0;
     getline(cin, input);
     // This code converts from string to number safely.
+    
     stringstream myStream(input);
-    if (myStream >> myNumber) {
+    if (!(myStream >> myNumber)) {
         cout << "Invalid number, please try again" << endl;
     }
 
