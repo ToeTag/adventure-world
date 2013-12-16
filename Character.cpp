@@ -34,7 +34,7 @@ namespace AdventureWorld
 	{
 		if ((this->life())-diff <= 0)
 		{
-			kill();
+			this->kill();
 		}
 		else
 		{
@@ -42,7 +42,7 @@ namespace AdventureWorld
 			cout << "The " << this->type() << " lost " << diff << " life, and now has " << this->life() << " left! " << endl;
 			if (this->life() <= 0)
 			{
-				kill();
+				this->kill();
 			}
 		}
 	}
@@ -55,7 +55,7 @@ namespace AdventureWorld
 		else
 		{
 			this->kill();
-                        this->status == DEAD;
+            this->status == DEAD;
 		}
 	}
         
@@ -65,8 +65,6 @@ namespace AdventureWorld
 		this->hitpoints = 0;
 		cout << "The " << this->type() << " is dead! " << endl;
 	}
-	
-	
         
 	string Character::name(void) const
 	{
@@ -93,40 +91,40 @@ namespace AdventureWorld
 		return dmg_type;
 	}
         
-        void Character::set_under_attack(bool atk)
-        {
-            this->attack_status = atk;
-        }
+    void Character::set_under_attack(bool atk)
+    {
+        this->attack_status = atk;
+    }
         
         bool Character::is_under_attack() const
 	{
 		return attack_status;
 	}
         
-        void Character::pick_up(Item * i)
-        {
-            inventory->add(i);
-        }
+    void Character::pick_up(Item * i)
+    {
+        inventory->add(i);
+    }
+    
+    int Character::damage() const
+    {
+        return dmg;
+    }
+    
+    Inventory * Character::get_inventory() const
+    {
+        return inventory;
+    }	
+    
+    void Character::loot_items(Character * from)
+    {
+       vector<Item*> * looted_item_vec = (from->get_inventory())->get_items();
+       vector<Item*>::iterator it;
         
-        int Character::damage() const
-        {
-            return dmg;
-        }
+	    for (it = looted_item_vec->begin(); it != looted_item_vec->end(); ++it) {
+	        cout << "looted: " << (*it)->get_type() << " - " << (*it)->get_name() << " (" << (*it)->get_dmg() << ")" <<endl;
+	        inventory->add(*it);
+	    }
         
-        Inventory * Character::get_inventory() const
-        {
-            return inventory;
-        }	
-        
-        void Character::loot_items(Character * from)
-        {
-           vector<Item*> * looted_item_vec = (from->get_inventory())->get_items();
-           vector<Item*>::iterator it;
-            
-        for (it = looted_item_vec->begin(); it != looted_item_vec->end(); ++it) {
-            cout << "looted: " << (*it)->get_type() << " - " << (*it)->get_name() << " (" << (*it)->get_dmg() << ")" <<endl;
-            inventory->add(*it);
-        }
-            
-        }
+    }
 }

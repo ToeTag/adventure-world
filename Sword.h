@@ -33,6 +33,7 @@ namespace AdventureWorld
         int dmg;
         string name;
         string type;
+        string info;
         
     };
 }

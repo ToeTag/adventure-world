@@ -13,7 +13,7 @@
 using namespace std;
 namespace AdventureWorld {
 
-    Human::Human(string name_string) : Adventurer(25, "physical", "human", name_string), dmg_type("physical"), character_type("human") {
+    Human::Human(string name_string) : Adventurer(2, "physical", "human", name_string), dmg_type("physical"), character_type("human") {
          this->dmg = 5;
     }
 

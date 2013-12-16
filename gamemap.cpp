@@ -55,12 +55,15 @@ namespace AdventureWorld
                 
 	}	
         
+        
+        
         void GameMap::assign_neighbours()
         {
             for(int i = 0; i < rows; i++)
                         {
                             for(int j = 0; j < cols; j++)
                             {
+                                
                                 //North west corner
                                 if (i == 0 && j == 0)
                                 {
