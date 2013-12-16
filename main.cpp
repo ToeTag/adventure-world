@@ -15,6 +15,7 @@
 #include "Item.h"
 #include "Sword.h"
 #include "Event.h"
+#include "Fireball.h"
 #include <sstream>
 #include <ctime>
 
@@ -25,11 +26,16 @@
 
 #define MOVE 1
 #define INVENTORY 2
-#define FLEE 6
-#define FIGHT 7
-#define GET_DIRECTIONS 3
+#define SPELLBOOK 3
 #define SEE 4
-#define MAP 5
+#define GET_DIRECTIONS 5
+#define MAP 6
+#define FLEE 7
+#define FIGHT 8
+
+
+
+
 #define DEBUG
 
 //#include "Troll.h"
@@ -146,8 +152,8 @@ int game(Adventurer * player, GameMap * gm) {
                 enemy = event.spawn_enemy();
                 cur_area->spawn_character(enemy);
                 enemy->pick_up(new Sword());
+                enemy->pick_up(new Fireball());
                 event.ambush(player, enemy);
-
             }
         }
         if (action == INVENTORY) {
@@ -169,7 +175,10 @@ int game(Adventurer * player, GameMap * gm) {
             cur_area->print_characters();
         } else if (action == MAP) {
 	        gm->print_areas();
-	}
+	    } else if (action == SPELLBOOK) {
+            cout << "Your spellbook contains: " << endl;
+            cout << *(player->get_spellbook()) << endl;
+        }
     }
     cout << "You are dead! Game Over" << endl;
 }

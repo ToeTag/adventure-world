@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include "Inventory.h"
+#include "Spellbook.h"
 //#include "Area.h"
 using namespace std;
 
@@ -50,13 +51,15 @@ namespace AdventureWorld
 		virtual void reduce_life(int);
 		virtual void increase_life(int);
 		e_status health_status() const;
-                Inventory * get_inventory() const;
-                void pick_up(Item * i);
-                void set_under_attack(bool);
-                bool is_under_attack() const;
-                virtual int damage(void) const;
+        Inventory * get_inventory() const;
+        Spellbook * get_spellbook() const;
+        void pick_up(Item * i);
+        void pick_up(Spell * i);
+        void set_under_attack(bool);
+        bool is_under_attack() const;
+        virtual int damage(void) const;
 		void kill();
-                virtual void loot_items(Character *);
+        virtual void loot(Character *);
                 
                 
 		
@@ -66,9 +69,10 @@ namespace AdventureWorld
 		string character_type;
 		string dmg_type;
 		e_status status;
-                bool attack_status;
-                Inventory * inventory;
-                int dmg;
+        bool attack_status;
+        Inventory * inventory;
+        Spellbook * spellbook;
+        int dmg;
                 
                 
 		

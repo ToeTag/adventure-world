@@ -1,5 +1,5 @@
 //
-//  Actor.cpp
+//  Character.cpp
 //  AdventureWorld
 //
 //  Created by Niclas Kempe on 2012-08-07.
@@ -23,12 +23,14 @@ namespace AdventureWorld
 									status(HEALTHY)
 	{
            
-                inventory = new Inventory();
-        }
+    	inventory = new Inventory();
+    	spellbook = new Spellbook();
+    }
 
 	Character::~Character(void)
 	{
-            delete inventory;
+    	delete inventory;
+    	delete spellbook;
 	}
 	void Character::reduce_life(int diff)
 	{
@@ -104,6 +106,13 @@ namespace AdventureWorld
     void Character::pick_up(Item * i)
     {
         inventory->add(i);
+        cout << "Picked up a " << i->get_type() << endl;
+    }
+
+    void Character::pick_up(Spell * i)
+    {
+    	cout << "Picked up a " << i->get_type() << endl;
+        spellbook->add(i);
     }
     
     int Character::damage() const
@@ -115,8 +124,13 @@ namespace AdventureWorld
     {
         return inventory;
     }	
+
+    Spellbook * Character::get_spellbook() const
+    {
+        return spellbook;
+    }	
     
-    void Character::loot_items(Character * from)
+    void Character::loot(Character * from)
     {
        vector<Item*> * looted_item_vec = (from->get_inventory())->get_items();
        vector<Item*>::iterator it;
@@ -124,7 +138,16 @@ namespace AdventureWorld
 	    for (it = looted_item_vec->begin(); it != looted_item_vec->end(); ++it) {
 	        cout << "looted: " << (*it)->get_type() << " - " << (*it)->get_name() << " (" << (*it)->get_dmg() << ")" <<endl;
 	        inventory->add(*it);
-	    }
+	    }  
+
+	    vector<Spell*> * looted_spell_vec = (from->get_spellbook())->get_spells();
+        vector<Spell*>::iterator it_s;
         
+	    for (it_s = looted_spell_vec->begin(); it_s != looted_spell_vec->end(); ++it_s) {
+	        cout << "looted: " << (*it_s)->get_type() << " - " << (*it_s)->get_name() << " (" << (*it_s)->get_dmg() << ")" <<endl;
+	        spellbook->add(*it_s);
+	    }      
     }
+
+
 }

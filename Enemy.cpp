@@ -22,14 +22,14 @@ namespace AdventureWorld {
         gm->move_character(this, player_area);
     }
 
-    void Enemy::fight(Character * a) { //TODO: Move to Enemy.cpp
+    void Enemy::fight(Character * a) { 
         if ((this->life()) > 0) {
             if (a->is_under_attack() != true) {
                 a->set_under_attack(true);
             } else if (this->life() == 0) {
                 a->set_under_attack(false);
                 cout << "Fight over" << endl;
-                this->loot_items(a);
+                this->loot(a);
             }
             cout << this->name() << " attacks " << a->name() << " and hit for " << this->damage() << " damage!" << endl;
             a->reduce_life(this->damage());

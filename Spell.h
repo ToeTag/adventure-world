@@ -17,16 +17,23 @@
  	{
  		public:
  			Spell();
+ 			Spell(int damage, int cooldown, string name);
 			Spell(const Spell& orig); 
-			~Spell();
- 			virtual string get_type() const = 0;
-        	virtual string get_name() const = 0;
-        	virtual int get_dmg() const = 0;
+			virtual ~Spell();
+ 			virtual string get_type() const;
+        	virtual string get_name() const;
+        	virtual int get_dmg() const;
+    		virtual void cast() const;
+    		virtual ostream& print(ostream& out) const;
  		protected:
  			virtual void set_cooldown(int);
- 			virtual int get_cooldown();
- 		private:
+ 			virtual int get_cooldown() const;
+ 			int damage;
  			int cooldown;
+ 			string type;
+ 			string name;
+ 		private:
+ 			
  	};
  }
  #endif 

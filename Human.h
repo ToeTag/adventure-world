@@ -26,8 +26,7 @@ namespace AdventureWorld
 			~Human(void);
 			int life(void) const;
 			virtual string damage_type(void) const; //implemented
-			virtual string type(void) const; //implemented
-                        virtual void fight(Character * c);                      
+			virtual string type(void) const; //implemented                    
        
 		protected:
 			string dmg_type;

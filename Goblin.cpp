@@ -18,7 +18,7 @@
 using namespace std;
 namespace AdventureWorld {
 
-    Goblin::Goblin(string name_string) : Enemy(5, "physical", "goblin", name_string) {
+    Goblin::Goblin(string name_string) : Enemy(10, "physical", "goblin", name_string) {
         this->dmg = 2; //TODO: Change to dynamic damage depending on weapon.
         cout << "A " << this->type() << " named " << this->name() << ", with " << this->life() << " hitpoints, doing " << this->damage_type() << " damage" << " appears in front of you!" << endl;
     }

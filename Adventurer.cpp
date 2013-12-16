@@ -48,15 +48,16 @@ namespace AdventureWorld
             cout << "\nWhat do you want to do?" << endl;
             cout << "1. Move" << endl;
             cout << "2. Inventory" << endl;
-            cout << "3. Directions" << endl;
+            cout << "3. Spellbook" << endl;
             cout << "4. See" << endl;
-	        cout << "5. Map" << endl;
+            cout << "5. Directions" << endl;
+	        cout << "6. Map" << endl;
         }
         else if (is_under_attack() == true)
         {
             cout << "\nYou are under attack! pick a choice!" << endl;
-            cout << "6. Flee" << endl;
-            cout << "7. Fight back" << endl;
+            cout << "7. Flee" << endl;
+            cout << "8. Fight back" << endl;
         }
        
         cin >> choice;
@@ -64,6 +65,71 @@ namespace AdventureWorld
         getline(cin, dummyStr); //Eats the /n from cin
         return choice;
   }
+
+  void Adventurer::fight(Character * c) { 
+
+        Spell * choosen = 0; 
+        int i = 0;
+        vector<Spell*> * spells = (this->spellbook)->get_spells();
+        vector<Spell*>::iterator it;
+
+        
+        for (it = spells->begin(); it != spells->end(); ++it) {
+            if ((*it)->get_type() == "Spell") {
+                i++;
+                cout << i << ". " << (*it)->get_name() << "(" << (*it)->get_dmg() << ")" << endl;  
+            }
+        }
+        
+        if (i != 0) {
+            cout << "\n\nChoose an action:" << endl;
+            int choice = 0;
+            cin >> choice;
+            string dummyStr;
+            getline(cin, dummyStr); //Eats the /n from cin
+            choosen = spells->at(((int)choice)-1);
+            cout << "choosen: " << choosen->get_name() << endl;
+        }
+        
+        
+        
+        if ((this->life()) > 0)
+        {   
+
+                int dmg = 0;
+                if ( choosen != 0 ) {
+                    dmg = choosen->get_dmg();
+                } else {
+                    dmg = this->damage();
+                }
+                cout << this->name() << " attacks " << c->name() << " and hit for " << dmg << " damage!" << endl;
+                c->reduce_life(dmg);
+                if (c->life() == 0)
+                {
+                    this->set_under_attack(false);
+                    this->loot(c);
+                }
+        }
+        else
+        {
+            this->set_under_attack(false);
+            //cout << this->name() << "is dead!" << endl;
+        }
+
+        i = 0;
+        //if (Inventory contains spells)
+        //cout << "1. Throw spell" << endl;
+        // Throw spell
+
+        //else if (Weapon is mounted)
+        //cout << "2. Wield weapon" << endl;
+
+        //else if (Spell & Weapon)
+        //cout << "1. Throw spell" << endl;
+        //cout << "2. Wield weapon" << endl;
+        //Do what the player chooses
+
+    }
 
 	void Adventurer::move(GameMap * gm)
 	{
