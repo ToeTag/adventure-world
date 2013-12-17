@@ -1,9 +1,13 @@
  CC = g++
 
- CFLAGS = -w -c -g -std=c++0x
+ ifeq ($(DEBUG), 1)
+	D_FLAG = -DDEBUG
+ else
+	D_FLAG = -DNDEBUG
+ endif
 
-#LDFLAGS= -lSDL
-	
+ CFLAGS = -w -c -g -std=c++0x $(D_FLAG) 
+
  IDIR=-I -I/Fiends 
 
  _DEPS = $(wildcard *.h)

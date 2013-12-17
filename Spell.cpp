@@ -4,7 +4,7 @@
  * 
  * Created on den 16 December 2013, 16:42
  */
- #include "spell.h"
+ #include "Spell.h"
  #include <iostream>
 
  using namespace std;

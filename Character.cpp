@@ -106,13 +106,13 @@ namespace AdventureWorld
     void Character::pick_up(Item * i)
     {
         inventory->add(i);
-        cout << "Picked up a " << i->get_type() << endl;
+        DEBUG_PRINT("Picked up a " << i->get_type());
     }
 
     void Character::pick_up(Spell * i)
     {
-    	cout << "Picked up a " << i->get_type() << endl;
         spellbook->add(i);
+        DEBUG_PRINT("Picked up a " << i->get_type());
     }
     
     int Character::damage() const

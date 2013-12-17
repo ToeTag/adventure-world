@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include "debug.h"
 #include "Character.h"
 #include "Enemy.h"
 #include "Goblin.h"
@@ -33,11 +34,6 @@
 #define FLEE 7
 #define FIGHT 8
 
-
-
-
-#define DEBUG
-
 //#include "Troll.h"
 //#include "Spider.h"
 using namespace std;
@@ -58,9 +54,10 @@ Adventurer * create_character(Area * a) {
     if (!(myStream >> myNumber)) {
       	cout << "Invalid number, please try again" << endl;        
     }
-#ifdef DEBUG
-	cout << "myNumber: " <<  myNumber << endl;
-#endif
+
+    DEBUG_PRINT("myNumber: " << myNumber);
+    //cout << "myNumber: " <<  myNumber << endl;
+
     }
 
     
@@ -219,7 +216,14 @@ int menu(Adventurer * player, GameMap * gm) {
     }
 }
 
+ 
+
 int main(int argc, const char * argv[]) {
+
+#ifdef DEBUG
+  cout << "\n\n\nSTARTING ADVENTURE WORLD IN DEBUG MODE!" << endl;
+#endif
+
     std::cout << "\n\n\n##################################" << endl;
     std::cout << "#   Welcome to AdventureWorld!   #" << endl;
     std::cout << "##################################\n\n\n" << endl;

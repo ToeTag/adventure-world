@@ -1,0 +1,17 @@
+
+#############################################
+### Build instructions for AdventureWorld ###
+#############################################
+
+### Withouth debugging traces ###
+
+    make -j8
+or
+    make -j8 DEBUG=0
+
+### With debugging traces ###
+
+    make -j8 DEBUG=1
+
+
+##############################################
