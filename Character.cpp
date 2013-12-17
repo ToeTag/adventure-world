@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include "Character.h"
+#include "debug.h"
 using namespace std;
 namespace AdventureWorld
 {	
@@ -106,13 +107,13 @@ namespace AdventureWorld
     void Character::pick_up(Item * i)
     {
         inventory->add(i);
-        DEBUG_PRINT("Picked up a " << i->get_type());
+        DEBUG_PRINT("Picked up " << i->get_type());
     }
 
     void Character::pick_up(Spell * i)
     {
         spellbook->add(i);
-        DEBUG_PRINT("Picked up a " << i->get_type());
+        DEBUG_PRINT("Picked up " << i->get_type());
     }
     
     int Character::damage() const
