@@ -10,6 +10,7 @@ using namespace std;
 namespace AdventureWorld
 {
     Weapon::Weapon() {
+    	this->type = "Weapon";
     }
 
     Weapon::Weapon(const Weapon& orig) {

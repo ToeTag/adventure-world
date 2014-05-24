@@ -68,40 +68,65 @@ namespace AdventureWorld
 
   void Adventurer::fight(Character * c) { 
 
-        Spell * choosen = 0; 
-        int i = 0;
+        Spell * choosen_spell = 0;
+        Item * choosen_item = 0; 
+        int spell_count = 0;
+        int item_count = 0;
+        int index_count = 0;
+
         vector<Spell*> * spells = (this->spellbook)->get_spells();
         vector<Spell*>::iterator it;
-
         
+        vector<Item*> * items = (this->inventory)->get_items();
+        vector<Item*>::iterator item_it;
+
+        for(item_it = items->begin(); item_it != items->end(); ++item_it) {
+            //if((*item_it)->get_type() == "Weapon") {
+                item_count++;
+                index_count++;
+                cout << index_count << ". " << (*item_it)->get_name() << "(" << (*item_it)->get_dmg() << ")" << endl;
+            //}
+        }
+
         for (it = spells->begin(); it != spells->end(); ++it) {
             if ((*it)->get_type() == "Spell") {
-                i++;
-                cout << i << ". " << (*it)->get_name() << "(" << (*it)->get_dmg() << ")" << endl;  
+                spell_count++;
+                index_count++;
+                cout << index_count << ". " << (*it)->get_name() << "(" << (*it)->get_dmg() << ")" << endl;  
             }
         }
-        
-        if (i != 0) {
+        if ((item_count > 0) || (spell_count > 0)) {
             cout << "\n\nChoose an action:" << endl;
             int choice = 0;
             cin >> choice;
             string dummyStr;
             getline(cin, dummyStr); //Eats the /n from cin
-            choosen = spells->at(((int)choice)-1);
-            cout << "choosen: " << choosen->get_name() << endl;
+            if(((int)choice) <= item_count){
+                cout << "index: " << ((int)choice)-1 << endl;
+                choosen_item = items->at(((int)choice)-1);
+            } else {
+                cout << "index: " << ((int)choice)-1-item_count << endl;
+                choosen_spell = spells->at(((int)choice)-1-item_count);
+            }
+
+            
         }
-        
+
         
         
         if ((this->life()) > 0)
         {   
 
                 int dmg = 0;
-                if ( choosen != 0 ) {
-                    dmg = choosen->get_dmg();
+
+                if (choosen_spell != 0) {
+                    dmg = choosen_spell->get_dmg();
+                } else if (choosen_item != 0){
+                    dmg = choosen_item->get_dmg();
                 } else {
                     dmg = this->damage();
                 }
+               
                 cout << this->name() << " attacks " << c->name() << " and hit for " << dmg << " damage!" << endl;
                 c->reduce_life(dmg);
                 if (c->life() == 0)
@@ -116,7 +141,8 @@ namespace AdventureWorld
             //cout << this->name() << "is dead!" << endl;
         }
 
-        i = 0;
+        item_count = 0;
+        spell_count = 0;
         //if (Inventory contains spells)
         //cout << "1. Throw spell" << endl;
         // Throw spell

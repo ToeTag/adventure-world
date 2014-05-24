@@ -22,7 +22,7 @@ namespace AdventureWorld
         virtual int get_dmg() const = 0;
         virtual ostream& print(ostream& out) const = 0;
     private:
-        
+        string type;
     };
 }
 #endif	/* WEAPON_H */

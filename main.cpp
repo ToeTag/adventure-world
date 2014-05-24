@@ -118,6 +118,7 @@ string read_str_input() {
     return input;
 }
 
+//Main game loop
 int game(Adventurer * player, GameMap * gm) {
     Area * cur_area = gm->find_character(player);
     string area_name = cur_area->get_name();
@@ -128,7 +129,6 @@ int game(Adventurer * player, GameMap * gm) {
     Event event;
     Enemy * enemy = 0;
 
-    //(player->get_inventory())->add(new Sword());
     string input = ""; // = read_str_input();
     while (player->life() > 0) {
         if (enemy != 0) { //TODO: Fix so that the enemy pointer can be reset and a new enemy can spawn
@@ -137,14 +137,19 @@ int game(Adventurer * player, GameMap * gm) {
                 enemy = 0;
             }
         }
+
         cur_area = gm->find_character(player);
         gm->refresh_map();
         int action = player->action();
+
+        //Chance for event
         int num = rand() % 2 + 1;
 
+        /* MOVE */
         if (action == MOVE) {
             player->move(gm);
 
+            //Enemy spawn event
             if (num == 1 && enemy == 0) {
                 enemy = event.spawn_enemy();
                 cur_area->spawn_character(enemy);
@@ -153,6 +158,8 @@ int game(Adventurer * player, GameMap * gm) {
                 event.ambush(player, enemy);
             }
         }
+
+        /* INVENTORY */
         if (action == INVENTORY) {
             cout << "Your inventory contains: " << endl;
             cout << *(player->get_inventory()) << endl;
@@ -163,15 +170,24 @@ int game(Adventurer * player, GameMap * gm) {
                 enemy->follow_player(player, gm);
 
             }
+
+        /* FIGHT */
         } else if (action == FIGHT && (enemy->life() > 0)) {
             player->fight(enemy);
             enemy->fight(player);
+
+        /* GET DIRECTIONS */
         } else if (action == GET_DIRECTIONS) {
             cur_area->print_neighbours();
+        /* SEE */
         } else if (action == SEE) {
             cur_area->print_characters();
+
+        /* MAP */
         } else if (action == MAP) {
 	        gm->print_areas();
+
+        /* SPELLBOOK */
 	    } else if (action == SPELLBOOK) {
             cout << "Your spellbook contains: " << endl;
             cout << *(player->get_spellbook()) << endl;
